@@ -14,11 +14,6 @@ app.use(cookieParser())
 
 
 
-// app.get("/", (req, res) => {  
-//   res.send("Welcome to Home Page");
-// });
-
-
 //MIDDLEWARE  
 app.use("/api/auth", router );
 app.use("/api/messages/",messageRouter);

@@ -1,9 +1,22 @@
 import React from "react";
+import SearchInput from "./SearchInput";
 
 const SideBar = () => {
   return (
     <>
-      <aside className=" flex flex-col gap-10 absolute top-0 left-0  ps-5 py-3 pe-3 bg-slate-600 w-[20%] text-white h-screen overflow-hidden">
+      <div>
+
+        <SearchInput />
+        <div className="divider px-3 "></div>
+      </div>
+    </>
+  )
+};
+
+export default SideBar;
+
+
+{/* <aside className=" flex flex-col gap-10 absolute top-0 left-0  ps-5 py-3 pe-3 bg-slate-600 w-[20%] text-white h-screen overflow-hidden">
         <div id="firstLayer" className="">
           <ul className="flex flex-col gap-3">
             {["Dashboard", "Profile", "Tokens", "Products"].map(
@@ -34,8 +47,6 @@ const SideBar = () => {
           </ul>
         </div>
       </aside>
-    </>
-  );
-};
+    </>*/
 
-export default SideBar;
+}
