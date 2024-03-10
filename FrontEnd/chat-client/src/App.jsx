@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <>
-      <div className="p-4 screen flex items-center justify-center h-screen">
+      <div className="p-4  flex items-center justify-center h-screen">
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
