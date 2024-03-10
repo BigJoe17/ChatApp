@@ -2,7 +2,7 @@ import React from "react";
 
 const GenderCheckbox = ({ onCheckBoxChange, selectedGender }) => {
   return (
-    <div className='flex flex-auto justify-center'>
+    <div className='flex flex-auto justify-around'>
       <div className='form-control'>
         <label
           className={`label gap-2 cursor-pointer ${
