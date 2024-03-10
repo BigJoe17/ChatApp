@@ -1,45 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import axios from 'axios';
+import { useAuthContext } from '../context/AuthContext';
+
 const UseSignup = () => {
     const [loading, setLoading] = useState(false);
+    const {setAuthUser} = useAuthContext();
 
-    const signup = async({ fullName, username, password, confirmPassword, gender }) => {
-
-        const success = handleInputsErrors({ fullName, username, password, confirmPassword, gender })
+    const signup = async ({ fullname, username, password, confirmPassword, gender }) => {
+        const success = handleInputsErrors({ fullname, username, password, confirmPassword, gender });
 
         if (!success)
-            return
+            return;
 
-        setLoading(true)
+        setLoading(true);
         try {
-            const res = await fetch("/api/auth/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    fullName, username, password, confirmPassword, gender
-                })
-            })
+            const res = await axios.post("/api/auth/signup", {
+                fullname, username, password, confirmPassword, gender
+            });
 
-            const data = await res.json();
-            console.log(data);
+            const data = res.data;
+            if (data.error) {
+                return;
+            }
 
+            // Store user data in localStorage or context
+            localStorage.setItem('chat-user', JSON.stringify(data));
+            setAuthUser(data);
+
+            toast.success(data.message);
         } catch (err) {
-            setLoading(false)
+            setLoading(false);
+            console.error(err);
+            toast.error("An error occurred. Please try again later.");
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
 
-    return { signup, loading }
+    return { signup, loading };
 }
 
-export default UseSignup
+export default UseSignup;
 
-
-function handleInputsErrors({ fullName, username, password, confirmPassword, gender }) {
-    if (!fullName || !username || !password || !confirmPassword || !gender) {
+function handleInputsErrors({ fullname, username, password, confirmPassword, gender }) {
+    if (!fullname || !username || !password || !confirmPassword || !gender) {
         toast.error("All fields are required");
         return false
     }
@@ -60,6 +65,4 @@ function handleInputsErrors({ fullName, username, password, confirmPassword, gen
     }
 
     return true
-
 }
-

@@ -5,7 +5,7 @@ import UseSignup from '../../hooks/UseSignup'
 
 const Signup = () => {
     const [inputs, setInputs] = useState({
-        fullName: '',
+        fullname: '',
         username: '',
         password: '',
         confirmPassword: '',
@@ -16,6 +16,7 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(inputs);
        await signup(inputs)
     }
 
@@ -37,8 +38,8 @@ const Signup = () => {
                                 <span className='text-2xl '>FullName</span>
                             </label>
                             <input type="text" placeholder="Type here" className="input text-black input-bordered input-primary w-full max-w-xs align-center"
-                                value={inputs.fullName}
-                                onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
+                                value={inputs.fullname}
+                                onChange={(e) => setInputs({ ...inputs, fullname: e.target.value })}
                             />
                         </div>
 
@@ -56,7 +57,7 @@ const Signup = () => {
                             <label className='label p-2'>
                                 <span className='text-2xl'>Email</span>
                             </label>
-                            <input type="email" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs align-center"
+                            <input type="email" placeholder="Type here" className="input input-bordered input-primary text-black w-full max-w-xs align-center"
                                 value={inputs.email}
                                 onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
                             />
@@ -66,7 +67,7 @@ const Signup = () => {
                             <label className='label p-2'>
                                 <span className='text-2xl'>Password</span>
                             </label>
-                            <input type="password" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs align-center"
+                            <input type="password" placeholder="Type here" className="input input-bordered input-primary text-black w-full max-w-xs align-center"
                                 value={inputs.password}
                                 onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
                             />
@@ -76,7 +77,7 @@ const Signup = () => {
                             <label className='label '>
                                 <span className='text-2xl'>ConfirmPassword</span>
                             </label>
-                            <input type="password" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs align-center"
+                            <input type="password" placeholder="Type here" className="input input-bordered input-primary text-black w-full max-w-xs align-center"
                                 value={inputs.confirmPassword}
                                 onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
                             />
