@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect} from 'react';
 import Messages from './Messages';
 import MessageInput from './MessageInput';
 import { BsChatDots } from 'react-icons/bs';
+import useConversation from '../../Zustand/useConversation';
 
 const MsgContainer = () => {
-  const [isChatSelected, setIsChatSelected] = useState(false);
+  const {selectedConversation, setSelectedConversation} = useConversation();
+
+  useEffect(() => {
+
+    // cleanup unmount
+    return () => setSelectedConversation(null);
+  },[setSelectedConversation]);
 
   return (
     <div className='md:min-w-[450px] flex flex-col'>
-      {isChatSelected ? (
+      {selectedConversation? (
         /* Render messages and message input when a chat is selected */
         <>
           {/* Header */}
           <div className='px-2 bg-blue-900 py-2 gap-2'>
             <span className='label-text text-gray-50'>To: </span>
-            <span className='text-gray-200 font-bold'>Joshua Olu</span>
+            <span className='text-gray-200 font-bold'>{selectedConversation.fullname}</span>
           </div>
           <Messages />
           <MessageInput />
